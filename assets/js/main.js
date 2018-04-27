@@ -1,23 +1,23 @@
-function workTimer {
+function workTimer() {
 
 }
 
-function breakTimer {
+function breakTimer() {
 
 }
 
-function start {
+function start() {
 
 }
 
-function stop {
+function stop() {
 
 }
 
-function pause {
+function pause() {
 
 }
 
-function refresh {
+function refresh() {
 
 }
