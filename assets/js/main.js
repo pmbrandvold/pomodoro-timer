@@ -10,7 +10,8 @@ refreshButton.addEventListener('click', refresh)
 
 let seconds = 60;
 let minutes = 25;
-let paused = false
+let paused = false;
+let started = false;
 
 //TIMERS
 function workTimer() {
@@ -36,6 +37,10 @@ function updateTimerDisplay() {
 let countdown = null
 //OPERATORS
 function start() {
+  if (started == true && paused == false) {
+    return 1;
+  }
+  started = true;
   if (paused == true) {
     paused = false;
   }
@@ -52,6 +57,7 @@ function refresh() {
   seconds = 60;
   minutes = 25;
   paused = false;
+  started = false;
   updateTimerDisplay();
 }
 
