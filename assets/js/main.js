@@ -74,6 +74,8 @@ function decreaseTime(timerName) {
     updateTimerDisplay(timerName);
     if (seconds == 0 && minutes == 0) {
       clearInterval(countdown);
+      refreshWork(timeDisplay);
+      startBrake()
     }
     if (paused == true) {
       clearInterval(countdown);
@@ -138,6 +140,8 @@ function decreaseBreakTime(timerName) {
     updateBrakeTimerDisplay(timerName);
     if (brakeSeconds == 0 && brakeMinutes == 0) {
       clearInterval(brakeCountdown);
+      refreshBrake(brakeTimerDisplay);
+      startWork();
     }
     if (brakePaused == true) {
       clearInterval(brakeCountdown);
