@@ -1,13 +1,19 @@
+//work timer objects
 const timeDisplay = document.getElementById('timeDisplay');
 const startButton = document.getElementById('startButton');
-const stopButton = document.getElementById('stopButton');
 const pauseButton = document.getElementById('pauseButton');
 const refreshButton = document.getElementById('refreshButton');
+//work timer listeners
+startButton.addEventListener('click', startWork)
+pauseButton.addEventListener('click', pauseWork)
+refreshButton.addEventListener('click', function () {refreshWork(timeDisplay)})
 
-startButton.addEventListener('click', start)
-pauseButton.addEventListener('click', pause)
-refreshButton.addEventListener('click', function () {refresh(timeDisplay)})
-
+//break timer objects
+const breakTimeDisplay = document.getElementById('breakDisplay');
+const breakStartButton = document.getElementById('breakStartButton');
+const breakPauseButton = document.getElementById('breakPauseButton');
+const breakRefreshButton = document.getElementById('breakRefreshButton');
+//break timer listeners
 let seconds = 60;
 let minutes = 25;
 let paused = false;
@@ -28,7 +34,7 @@ function updateTimerDisplay(timer) {
 
 let countdown = null
 //OPERATORS
-function start() {
+function startWork() {
   if (started == true && paused == false) {
     return 1;
   }
@@ -41,11 +47,11 @@ function start() {
   }
 }
 
-function pause() {
+function pauseWork() {
   paused = true;
 }
 
-function refresh(timerName) {
+function refreshWork(timerName) {
   seconds = 60;
   minutes = 25;
   paused = false;
