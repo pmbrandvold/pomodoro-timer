@@ -6,7 +6,7 @@ const refreshButton = document.getElementById('refreshButton');
 
 startButton.addEventListener('click', start)
 pauseButton.addEventListener('click', pause)
-refreshButton.addEventListener('click', refresh)
+refreshButton.addEventListener('click', function () {refresh(timeDisplay)})
 
 let seconds = 60;
 let minutes = 25;
@@ -22,14 +22,14 @@ function breakTimer() {
 
 }
 
-function updateTimerDisplay() {
+function updateTimerDisplay(timer) {
   if (seconds < 10) {
-    timeDisplay.innerHTML = minutes + ':' + '0' + seconds;
+    timer.innerHTML = minutes + ':' + '0' + seconds;
     console.log(minutes + ':' + '0' + seconds);
   } else if (seconds == 60) {
-    timeDisplay.innerHTML = minutes + ':' + '00';
+    timer.innerHTML = minutes + ':' + '00';
   } else {
-    timeDisplay.innerHTML = minutes + ':' + seconds;
+    timer.innerHTML = minutes + ':' + seconds;
     console.log(minutes + ':' + seconds)
   }
 }
@@ -45,7 +45,7 @@ function start() {
     paused = false;
   }
   if (minutes != 0 && seconds != 0) {
-    countdown = setInterval(function() { decreaseTime() }, 1000);
+    countdown = setInterval(function() { decreaseTime(timeDisplay) }, 1000);
   }
 }
 
@@ -53,22 +53,22 @@ function pause() {
   paused = true;
 }
 
-function refresh() {
+function refresh(timerName) {
   seconds = 60;
   minutes = 25;
   paused = false;
   started = false;
-  updateTimerDisplay();
+  updateTimerDisplay(timerName);
 }
 
 //HELPERS
-function decreaseTime() {
+function decreaseTime(timerName) {
     seconds -= 1;
     if (seconds == 0 && minutes != 0) {
       minutes -= 1;
       seconds = 59;
     }
-    updateTimerDisplay();
+    updateTimerDisplay(timerName);
     if (seconds == 0 && minutes == 0) {
       clearInterval(countdown);
     }
