@@ -13,14 +13,6 @@ let minutes = 25;
 let paused = false;
 let started = false;
 
-//TIMERS
-function workTimer() {
-
-}
-
-function breakTimer() {
-
-}
 
 function updateTimerDisplay(timer) {
   if (seconds < 10) {
