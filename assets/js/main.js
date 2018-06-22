@@ -8,12 +8,17 @@ startButton.addEventListener('click', startWork)
 pauseButton.addEventListener('click', pauseWork)
 refreshButton.addEventListener('click', function () {refreshWork(timeDisplay)})
 
-//break timer objects
-const breakTimeDisplay = document.getElementById('breakDisplay');
-const breakStartButton = document.getElementById('breakStartButton');
-const breakPauseButton = document.getElementById('breakPauseButton');
-const breakRefreshButton = document.getElementById('breakRefreshButton');
-//break timer listeners
+//brake timer objects
+const brakeTimerDisplay = document.getElementById('brakeDisplay');
+const brakeStartButton = document.getElementById('brakeStartButton');
+const brakePauseButton = document.getElementById('brakePauseButton');
+const brakeRefreshButton = document.getElementById('brakeRefreshButton');
+//brake timer listeners
+brakeStartButton.addEventListener('click', startBrake)
+brakePauseButton.addEventListener('click', pauseBrake)
+brakeRefreshButton.addEventListener('click', function () {refreshBrake(brakeTimerDisplay)})
+
+//work variables
 let seconds = 60;
 let minutes = 25;
 let paused = false;
@@ -31,7 +36,7 @@ function updateTimerDisplay(timer) {
     console.log(minutes + ':' + seconds)
   }
 }
-
+//work timer functions
 let countdown = null
 //OPERATORS
 function startWork() {
@@ -72,5 +77,69 @@ function decreaseTime(timerName) {
     }
     if (paused == true) {
       clearInterval(countdown);
+    }
+}
+
+//************************
+//************************
+
+//brakeTimerFunctions
+let brakeSeconds = 60;
+let brakeMinutes = 5;
+let brakePaused = false;
+let brakeStarted = false;
+
+function updateBrakeTimerDisplay(timer) {
+  if (brakeSeconds < 10) {
+    timer.innerHTML = brakeMinutes + ':' + '0' + brakeSeconds;
+    console.log(brakeMinutes + ':' + '0' + brakeSeconds);
+  } else if (brakeSeconds == 60) {
+    timer.innerHTML = brakeMinutes + ':' + '00';
+  } else {
+    timer.innerHTML = brakeMinutes + ':' + brakeSeconds;
+    console.log(brakeMinutes + ':' + brakeSeconds)
+  }
+}
+
+let brakeCountdown = null
+//OPERATORS
+function startBrake() {
+  if (brakeStarted == true && brakePaused == false) {
+    return 1;
+  }
+  brakeStarted = true;
+  if (brakePaused == true) {
+    brakePaused = false;
+  }
+  if (brakeMinutes != 0 && brakeSeconds != 0) {
+    brakeCountdown = setInterval(function() { decreaseBreakTime(brakeTimerDisplay) }, 1000);
+  }
+}
+
+function pauseBrake() {
+  brakePaused = true;
+}
+
+function refreshBrake(timerName) {
+  brakeSeconds = 60;
+  brakeMinutes = 5;
+  brakePause = false;
+  brakeStarted = false;
+  updateBrakeTimerDisplay(timerName);
+}
+
+//HELPERS
+function decreaseBreakTime(timerName) {
+    brakeSeconds -= 1;
+    if (brakeSeconds == 0 && brakeMinutes != 0) {
+      brakeMinutes -= 1;
+      brakeSeconds = 59;
+    }
+    updateBrakeTimerDisplay(timerName);
+    if (brakeSeconds == 0 && brakeMinutes == 0) {
+      clearInterval(brakeCountdown);
+    }
+    if (brakePaused == true) {
+      clearInterval(brakeCountdown);
     }
 }
