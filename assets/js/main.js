@@ -8,15 +8,15 @@ startButton.addEventListener('click', startWork)
 pauseButton.addEventListener('click', pauseWork)
 refreshButton.addEventListener('click', function () {refreshWork(timeDisplay)})
 
-//brake timer objects
-const brakeTimerDisplay = document.getElementById('brakeDisplay');
-const brakeStartButton = document.getElementById('brakeStartButton');
-const brakePauseButton = document.getElementById('brakePauseButton');
-const brakeRefreshButton = document.getElementById('brakeRefreshButton');
-//brake timer listeners
-brakeStartButton.addEventListener('click', startBrake)
-brakePauseButton.addEventListener('click', pauseBrake)
-brakeRefreshButton.addEventListener('click', function () {refreshBrake(brakeTimerDisplay)})
+//break timer objects
+const breakTimerDisplay = document.getElementById('breakDisplay');
+const breakStartButton = document.getElementById('breakStartButton');
+const breakPauseButton = document.getElementById('breakPauseButton');
+const breakRefreshButton = document.getElementById('breakRefreshButton');
+//break timer listeners
+breakStartButton.addEventListener('click', startBreak)
+breakPauseButton.addEventListener('click', pauseBreak)
+breakRefreshButton.addEventListener('click', function () {refreshBreak(breakTimerDisplay)})
 
 //work variables
 let seconds = 60;
@@ -75,7 +75,7 @@ function decreaseTime(timerName) {
     if (seconds == 0 && minutes == 0) {
       clearInterval(countdown);
       refreshWork(timeDisplay);
-      startBrake()
+      startBreak()
     }
     if (paused == true) {
       clearInterval(countdown);
@@ -85,65 +85,65 @@ function decreaseTime(timerName) {
 //************************
 //************************
 
-//brakeTimerFunctions
-let brakeSeconds = 60;
-let brakeMinutes = 5;
-let brakePaused = false;
-let brakeStarted = false;
+//breakTimerFunctions
+let breakSeconds = 60;
+let breakMinutes = 5;
+let breakPaused = false;
+let breakStarted = false;
 
-function updateBrakeTimerDisplay(timer) {
-  if (brakeSeconds < 10) {
-    timer.innerHTML = brakeMinutes + ':' + '0' + brakeSeconds;
-    console.log(brakeMinutes + ':' + '0' + brakeSeconds);
-  } else if (brakeSeconds == 60) {
-    timer.innerHTML = brakeMinutes + ':' + '00';
+function updateBreakTimerDisplay(timer) {
+  if (breakSeconds < 10) {
+    timer.innerHTML = breakMinutes + ':' + '0' + breakSeconds;
+    console.log(breakMinutes + ':' + '0' + breakSeconds);
+  } else if (breakSeconds == 60) {
+    timer.innerHTML = breakMinutes + ':' + '00';
   } else {
-    timer.innerHTML = brakeMinutes + ':' + brakeSeconds;
-    console.log(brakeMinutes + ':' + brakeSeconds)
+    timer.innerHTML = breakMinutes + ':' + breakSeconds;
+    console.log(breakMinutes + ':' + breakSeconds)
   }
 }
 
-let brakeCountdown = null
+let breakCountdown = null
 //OPERATORS
-function startBrake() {
-  if (brakeStarted == true && brakePaused == false) {
+function startBreak() {
+  if (breakStarted == true && breakPaused == false) {
     return 1;
   }
-  brakeStarted = true;
-  if (brakePaused == true) {
-    brakePaused = false;
+  breakStarted = true;
+  if (breakPaused == true) {
+    breakPaused = false;
   }
-  if (brakeMinutes != 0 && brakeSeconds != 0) {
-    brakeCountdown = setInterval(function() { decreaseBreakTime(brakeTimerDisplay) }, 1000);
+  if (breakMinutes != 0 && breakSeconds != 0) {
+    breakCountdown = setInterval(function() { decreaseBreakTime(breakTimerDisplay) }, 1000);
   }
 }
 
-function pauseBrake() {
-  brakePaused = true;
+function pauseBreak() {
+  breakPaused = true;
 }
 
-function refreshBrake(timerName) {
-  brakeSeconds = 60;
-  brakeMinutes = 5;
-  brakePause = false;
-  brakeStarted = false;
-  updateBrakeTimerDisplay(timerName);
+function refreshBreak(timerName) {
+  breakSeconds = 60;
+  breakMinutes = 5;
+  breakPause = false;
+  breakStarted = false;
+  updateBreakTimerDisplay(timerName);
 }
 
 //HELPERS
 function decreaseBreakTime(timerName) {
-    brakeSeconds -= 1;
-    if (brakeSeconds == 0 && brakeMinutes != 0) {
-      brakeMinutes -= 1;
-      brakeSeconds = 59;
+    breakSeconds -= 1;
+    if (breakSeconds == 0 && breakMinutes != 0) {
+      breakMinutes -= 1;
+      breakSeconds = 59;
     }
-    updateBrakeTimerDisplay(timerName);
-    if (brakeSeconds == 0 && brakeMinutes == 0) {
-      clearInterval(brakeCountdown);
-      refreshBrake(brakeTimerDisplay);
+    updateBreakTimerDisplay(timerName);
+    if (breakSeconds == 0 && breakMinutes == 0) {
+      clearInterval(breakCountdown);
+      refreshBreak(breakTimerDisplay);
       startWork();
     }
-    if (brakePaused == true) {
-      clearInterval(brakeCountdown);
+    if (breakPaused == true) {
+      clearInterval(breakCountdown);
     }
 }
