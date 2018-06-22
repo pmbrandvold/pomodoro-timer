@@ -1,4 +1,4 @@
-const workTimerDisplay = document.getElementById('workTimerDisplay');
+const timeDisplay = document.getElementById('timeDisplay');
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
 const pauseButton = document.getElementById('pauseButton');
@@ -24,12 +24,12 @@ function breakTimer() {
 
 function updateTimerDisplay() {
   if (seconds < 10) {
-    workTimerDisplay.innerHTML = minutes + ':' + '0' + seconds;
+    timeDisplay.innerHTML = minutes + ':' + '0' + seconds;
     console.log(minutes + ':' + '0' + seconds);
   } else if (seconds == 60) {
-    workTimerDisplay.innerHTML = minutes + ':' + '00';
+    timeDisplay.innerHTML = minutes + ':' + '00';
   } else {
-    workTimerDisplay.innerHTML = minutes + ':' + seconds;
+    timeDisplay.innerHTML = minutes + ':' + seconds;
     console.log(minutes + ':' + seconds)
   }
 }

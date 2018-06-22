@@ -18,3 +18,9 @@
 h1 {
   text-align: center;
 }
+
+h3, p{
+  margin: auto;
+  text-align: center;
+  padding: 5px;
+}
