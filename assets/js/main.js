@@ -75,6 +75,7 @@ function decreaseTime(timerName) {
     if (seconds == 0 && minutes == 0) {
       clearInterval(countdown);
       refreshWork(timeDisplay);
+      alert("Time for your 5 minute break!");
       startBreak()
     }
     if (paused == true) {
@@ -141,6 +142,7 @@ function decreaseBreakTime(timerName) {
     if (breakSeconds == 0 && breakMinutes == 0) {
       clearInterval(breakCountdown);
       refreshBreak(breakTimerDisplay);
+      alert("Did you enjoy your break? Time to get some more stuff done!")
       startWork();
     }
     if (breakPaused == true) {
